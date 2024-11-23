@@ -1,0 +1,16 @@
+name: "mern-app"
+services:
+    mongo:
+        image: mongo
+        restart: always
+        container_name: mern-mongoDb
+        ports:
+            - 27017:27017
+        environment:
+            - MONGO_INITDB_ROOT_PASSWORD=${DB_PASSWORD}
+            - MONGO_INITDB_ROOT_USERNAME=${DB_USER}
+        volumes:
+            - mern_app_data:/data/db/
+
+volumes:
+    mern_app_data:
