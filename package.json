@@ -1,0 +1,21 @@
+{
+  "name": "mern-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start-mongodb": "podman compose --env-file ./mongoDb/mongoDb.env -f ./mongoDb/docker-compose.yml up -d",
+    "stop-mongodb": "podman compose --env-file ./mongoDb/mongoDb.env -f ./mongoDb/docker-compose.yml down",
+    "fe-dev": "npm run dev -w packages/frontned",
+    "be-dev": "npm run dev -w packages/backend",
+    "fe-build": "npm run build -w packages/frontned",
+    "be-build": "npm run build -w packages/backend"
+  },
+  "keywords": [],
+  "author": "Shashi Kumar D M",
+  "license": "MIT",
+  "description": "",
+  "workspaces": [
+    "packages/frontend",
+    "packages/backend"
+  ]
+}
