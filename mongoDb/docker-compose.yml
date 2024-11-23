@@ -5,7 +5,7 @@ services:
         restart: always
         container_name: mern-mongoDb
         ports:
-            - 27017:27017
+            - ${DB_PORT}:27017
         environment:
             - MONGO_INITDB_ROOT_PASSWORD=${DB_PASSWORD}
             - MONGO_INITDB_ROOT_USERNAME=${DB_USER}

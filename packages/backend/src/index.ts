@@ -1,14 +1,18 @@
 import express from "express";
-import dotenv from "dotenv";
+import appRouter from "./routes";
+import { connectDb } from "./db/connection";
+import env from "./utils/env.utils";
 
-dotenv.config({ path: `.env.${process.env.NODE_ENV ?? "development"}` });
 
 const app = express();
-const port = process.env.PORT || 8000;
+const port = env.PORT
+connectDb();
 
 app.get("/welcome", (req, res) => {
     res.send("Welcome to the app");
 });
+
+app.use(appRouter)
 
 app.listen(port, () => {
     console.log(`Server started in  http://localhost:${port}`);
