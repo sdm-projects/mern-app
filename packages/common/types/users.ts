@@ -6,7 +6,8 @@ export interface User {
   id: string;
   role: string;
   email: string;
+  password: string;
 }
 
 export interface CreateUser extends Omit<User, "id"> {}
-export interface UpdateUser extends Omit<User, "id" | "email"> {}
+export interface UpdateUser extends Omit<User, "id" | "email" | "password"> {}

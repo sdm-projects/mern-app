@@ -14,8 +14,9 @@ const createUserSchema: JSONSchemaType<CreateUser> = {
     },
     role: { type: "string" },
     email: { type: "string" },
+    password: { type: "string" },
   },
-  required: ["firstName", "lastName", "email", "role"],
+  required: ["firstName", "lastName", "email", "password", "role"],
 };
 
 export const creteUserValidator = ajv.compile<User>(createUserSchema);
