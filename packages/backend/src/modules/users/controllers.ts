@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import db from "../../db/connection";
 import { Request, Response } from "express";
 
@@ -7,18 +8,32 @@ export const getUsers = async (req: Request, res: Response) => {
   res.send({ users: results }).status(200);
 };
 
-export const createUser = () => {
-  // Todo: code to create user in DB
+export const createUser = async (req: Request, res: Response) => {
+  const usersCollection = await db().collection("users");
+  const result = await usersCollection.insertOne(req.body);
+  res.json({ message: "creating user", obj: result }).status(200);
 };
 
-export const getUser = () => {
-  // Todo: code to return user by id from DB
+export const getUser = async (req: Request, res: Response) => {
+  const usersCollection = await db().collection("users");
+  const query = { _id: new ObjectId(req.params.id) };
+  const result = await usersCollection.findOne(query);
+  if (result) res.json({ data: result }).status(200);
+  else res.json({ error: "User not found" }).status(404);
 };
 
-export const updateUser = () => {
-  // Todo: code to update the user in the DB
+export const updateUser = async (req: Request, res: Response) => {
+  const usersCollection = await db().collection("users");
+  const query = { _id: new ObjectId(req.params.id) };
+  const result = await usersCollection.updateOne(query, {$set: req.body});
+  if (result) res.json({ data: result }).status(200);
+  else res.json({ error: "User not found" }).status(404);
 };
 
-export const deleteUser = () => {
-  // Todo: code to delete the user form the DB
+export const deleteUser = async (req: Request, res: Response) => {
+  const usersCollection = await db().collection("users");
+  const query = { _id: new ObjectId(req.params.id) };
+  const result = await usersCollection.deleteOne(query);
+  if (result) res.json({ message: "deleted" }).status(200);
+  else res.json({ error: "User not found" }).status(404);
 };

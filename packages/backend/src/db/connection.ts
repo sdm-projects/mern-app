@@ -1,5 +1,5 @@
 import { Db, MongoClient } from "mongodb";
-import env from "../utils/env.utils";
+import env from "../utils/env.util";
 
 const connectionString = `mongodb://${env.DB_USER}:${env.DB_PASSWORD}@${env.DB_HOST}`;
 const client = new MongoClient(connectionString);

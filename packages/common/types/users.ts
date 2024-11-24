@@ -1,9 +1,12 @@
-export type Role = "admin" | "user"
+export type Role = "admin" | "user";
 
 export interface User {
-    firstName: string;
-    lastname: string;
-    id: string;
-    role: string;
-    email: string;
+  firstName: string;
+  lastName: string;
+  id: string;
+  role: string;
+  email: string;
 }
+
+export interface CreateUser extends Omit<User, "id"> {}
+export interface UpdateUser extends Omit<User, "id" | "email"> {}
